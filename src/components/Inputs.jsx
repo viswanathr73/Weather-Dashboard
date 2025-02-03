@@ -1,4 +1,4 @@
-import React from "react";
+
 import { BiSearch, BiCurrentLocation } from "react-icons/bi";
 
 const Inputs = () => {
