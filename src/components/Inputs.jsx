@@ -1,19 +1,23 @@
 import { useState } from "react"
-
 import { BiSearch, BiCurrentLocation } from "react-icons/bi"
+import { useWeather } from '../context/WeatherContext'
 
-const Inputs = ({ setQuery, setUnits }) => {
+const Inputs = () => {
   const [city, setCity] = useState("")
+  const { updateQuery, updateUnits } = useWeather()
 
   const handleSearchClick = () => {
-    if (city !== "") setQuery({ q: city })
+    if (city !== "") {
+      updateQuery({ q: city })
+      setCity("")
+    }
   }
 
   const handleLocationClick = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords
-        setQuery({ lat: latitude, lon: longitude })
+        updateQuery({ lat: latitude, lon: longitude })
       })
     }
   }
@@ -43,14 +47,14 @@ const Inputs = ({ setQuery, setUnits }) => {
       <div className="flex flex-row w-full md:w-1/4 items-center justify-center space-x-2">
         <button
           className="text-2xl font-medium transition ease-out hover:scale-125 bg-white/20 p-2 rounded-md"
-          onClick={() => setUnits("metric")}
+          onClick={() => updateUnits("metric")}
         >
           °C
         </button>
         <p className="text-2xl font-medium mx-1"></p>
         <button
           className="text-2xl font-medium transition ease-out hover:scale-125 bg-white/20 p-2 rounded-md"
-          onClick={() => setUnits("imperial")}
+          onClick={() => updateUnits("imperial")}
         >
           °F
         </button>
