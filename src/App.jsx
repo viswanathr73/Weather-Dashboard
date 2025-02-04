@@ -21,20 +21,20 @@ const App = () => {
   }, [fetchWeather]);
 
   const getBackgroundImage = () => {
-    if (!weather) return "/assets/Clear.jpg";
+    if (!weather) return "/assets/Clear.webp";
 
     const condition = weather.details.toLowerCase();
-    if (condition.includes("clouds")) return "/assets/Cloudy.jpg";
+    if (condition.includes("clouds")) return "/assets/Cloudy.webp";
     if (condition.includes("mist") || condition.includes("fog"))
-      return "/assets/fog.png";
+      return "/assets/fog.webp";
     if (condition.includes("rain") || condition.includes("drizzle"))
-      return "/assets/Rainy.jpg";
-    if (condition.includes("snow")) return "/assets/snow.jpg";
+      return "/assets/Rainy.webp";
+    if (condition.includes("snow")) return "/assets/snow.webp";
     if (condition.includes("storm") || condition.includes("thunder"))
-      return "/assets/Stormy.jpg";
-    if (condition.includes("clear")) return "/assets/Sunny.jpg";
+      return "/assets/Stormy.webp";
+    if (condition.includes("clear")) return "/assets/Sunny.webp";
 
-    return "/assets/clear.jpg";
+    return "/assets/clear.webp";
   };
 
   return (
