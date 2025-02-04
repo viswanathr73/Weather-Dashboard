@@ -60,4 +60,3 @@ const Inputs = ({ setQuery, setUnits }) => {
 }
 
 export default Inputs
-
