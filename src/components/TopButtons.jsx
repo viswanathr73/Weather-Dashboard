@@ -23,7 +23,7 @@ const TopButtons = ({ setQuery }) => {
   ]
 
   return (
-    <div className="flex flex-wrap items-center justify-center my-6 space-x-2 space-y-2">
+    <div className="flex flex-wrap items-center justify-center my-6 gap-3">
       {cities.map((city) => (
         <button
           key={city.id}
