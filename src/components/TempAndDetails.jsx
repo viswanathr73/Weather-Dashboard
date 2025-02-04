@@ -1,22 +1,11 @@
-import { FaThermometerEmpty } from "react-icons/fa";
-import { BiSolidDropletHalf } from "react-icons/bi";
-import { FiWind } from "react-icons/fi";
-import { GiSunrise, GiSunset } from "react-icons/gi";
-import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+import { FaThermometerEmpty } from "react-icons/fa"
+import { BiSolidDropletHalf } from "react-icons/bi"
+import { FiWind } from "react-icons/fi"
+import { GiSunrise, GiSunset } from "react-icons/gi"
+import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md"
 
 const TempAndDetails = ({
-  weather: {
-    details,
-    icon,
-    temp,
-    temp_min,
-    temp_max,
-    sunrise,
-    sunset,
-    speed,
-    humidity,
-    feels_like,
-  },
+  weather: { details, icon, temp, temp_min, temp_max, sunrise, sunset, speed, humidity, feels_like },
   units,
 }) => {
   const verticalDetails = [
@@ -30,15 +19,15 @@ const TempAndDetails = ({
       id: 2,
       Icon: BiSolidDropletHalf,
       title: "Humidity",
-      value:  `${humidity.toFixed()}% `,
+      value: `${humidity.toFixed()}% `,
     },
     {
       id: 3,
       Icon: FiWind,
       title: "Wind",
-      value:  `${speed.toFixed()} ${ units === 'metric' ? 'Km/h'  : 'm/s'} `,
+      value: `${speed.toFixed()} ${units === "metric" ? "Km/h" : "m/s"} `,
     },
-  ];
+  ]
 
   const horizontalDetails = [
     {
@@ -57,54 +46,46 @@ const TempAndDetails = ({
       id: 3,
       Icon: MdKeyboardArrowUp,
       title: "High",
-      value:  `${temp_max.toFixed()}° `,
+      value: `${temp_max.toFixed()}° `,
     },
     {
       id: 4,
       Icon: MdKeyboardArrowDown,
       title: "Low",
-      value:  `${temp_min.toFixed()}° `,
+      value: `${temp_min.toFixed()}° `,
     },
-  ];
+  ]
 
   return (
-    <div className="">
-      <div className="flex item-center justify-center py-6 text-xl text-cyan-300">
+    <div className="bg-white/20 rounded-lg p-6 mt-6">
+      <div className="flex items-center justify-center py-6 text-xl text-white">
         <p className="">{details}</p>
       </div>
 
-      <div className="flex flex-row item-center justify-between py-3">
-        <img
-          src={icon}
-          alt="weather icon"
-          className="w-20 "
-        />
-        <p className="text-5xl">{`${temp.toFixed()}°`}</p>
-        <div className="flex flex-col space-y-3 item-start">
+      <div className="flex flex-col md:flex-row items-center justify-between py-3">
+        <img src={icon || "/placeholder.svg"} alt="weather icon" className="w-20" />
+        <p className="text-7xl font-bold text-white">{`${temp.toFixed()}°`}</p>
+        <div className="flex flex-col space-y-3 items-start text-white">
           {verticalDetails.map(({ id, Icon, title, value }) => (
-            <div
-              key={id}
-              className="flex font-light text-sm item-center justify-center"
-            >
+            <div key={id} className="flex font-light text-sm items-center justify-center">
               <Icon size={18} className="mr-1" />
               {`${title}: `} <span className="font-medium ml-1">{value}</span>
             </div>
           ))}
         </div>
       </div>
-      <div className="flex flex-row item-center justify-center space-x-10 text-sm py-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-white mt-6">
         {horizontalDetails.map(({ id, Icon, title, value }) => (
-          <div key={id} className="flex flex-row item-center ">
-            <Icon size={30} />
-            <p className="font-light ml-1">
-              {`${title}: `}
-              <span className="font-medium ml-1">{value}</span>
-            </p>
+          <div key={id} className="flex flex-col items-center justify-center bg-white/20 rounded-lg p-2">
+            <Icon size={24} className="mb-1" />
+            <p className="font-light text-sm">{title}</p>
+            <p className="font-medium">{value}</p>
           </div>
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TempAndDetails;
+export default TempAndDetails
+
